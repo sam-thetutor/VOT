@@ -1,6 +1,5 @@
 import { AuthClient } from '@dfinity/auth-client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { canisterId, createActor } from './declarations/backend';
 
 export const AuthContext = createContext();
 
@@ -37,7 +36,6 @@ export const useAuthClient = (options = defaultOptions) => {
   const [authClient, setAuthClient] = useState(null);
   const [identity, setIdentity] = useState(null);
   const [principal, setPrincipal] = useState(null);
-  const [backendActor, setBackendActor] = useState(null);
 
   useEffect(() => {
     // Initialize AuthClient
@@ -70,13 +68,6 @@ export const useAuthClient = (options = defaultOptions) => {
 
     setAuthClient(client);
 
-    const actor = await createActor(canisterId, {
-      agentOptions: {
-        identity,
-      },
-    });
-
-    setBackendActor(actor);
   }
 
   async function logout() {
