@@ -76,7 +76,6 @@ export const useAuthClient = (options = defaultOptions) => {
   }
 
   return {
-    backendActor,
     isAuthenticated,
     login,
     logout,
