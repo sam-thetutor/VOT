@@ -1,7 +1,13 @@
 import { AuthClient } from '@dfinity/auth-client'
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { canisterId, createActor } from './declarations/backend'
+import { createAgent } from '@dfinity/utils'
 
 export const AuthContext = createContext()
+const HOST =
+  process.env.DFX_NETWORK === 'ic'
+    ? 'https://identity.ic0.app/#authorize'
+    : `http://localhost:4943?canisterId=${process.env.CANISTER_ID_INTERNET_IDENTITY}#authorize`
 
 const defaultOptions = {
   /**
@@ -38,6 +44,7 @@ export const useAuthClient = (options = defaultOptions) => {
   const [principal, setPrincipal] = useState(null)
   const [agent, setAgent] = useState(null)
   const [backendActor, setBackendActor] = useState(null)
+  const [changes, setChanges] = useState(null)
 
   useEffect(() => {
     // Initialize AuthClient
@@ -104,6 +111,10 @@ export const useAuthClient = (options = defaultOptions) => {
     authClient,
     identity,
     principal,
+    agent,
+    backendActor,
+    changes,
+    setChanges,
   }
 }
 
