@@ -1,12 +1,12 @@
 {
   "canisters": {
-    "VOT_backend": {
+    "backend": {
       "main": "src/VOT_backend/main.mo",
       "type": "motoko"
     },
-    "VOT_frontend": {
+    "frontend": {
       "dependencies": [
-        "VOT_backend"
+        "backend"
       ],
       "source": [
         "src/VOT_frontend/dist"

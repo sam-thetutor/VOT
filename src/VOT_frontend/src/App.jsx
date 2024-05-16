@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { VOT_backend } from 'declarations/VOT_backend';
+import { backend } from 'declarations/backend';
 
 function App() {
   const [greeting, setGreeting] = useState('');
@@ -7,24 +7,14 @@ function App() {
   function handleSubmit(event) {
     event.preventDefault();
     const name = event.target.elements.name.value;
-    VOT_backend.greet(name).then((greeting) => {
+    backend.greet(name).then((greeting) => {
       setGreeting(greeting);
     });
     return false;
   }
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+   <h2>Elekshuniz VOT</h2>
   );
 }
 
